@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EF2FD5D1BA4721B00301CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */; };
+		3EF2FD5F1BA4721B00301CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */; };
+		3EF2FD621BA4721B00301CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD601BA4721B00301CD9 /* Main.storyboard */; };
+		3EF2FD651BA4721B00301CD9 /* QrAuthVault.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD631BA4721B00301CD9 /* QrAuthVault.xcdatamodeld */; };
+		3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD661BA4721B00301CD9 /* Assets.xcassets */; };
+		3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */; };
+		3EF2FD751BA4721B00301CD9 /* QrAuthVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3EF2FD711BA4721B00301CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EF2FD511BA4721B00301CD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EF2FD581BA4721B00301CD9;
+			remoteInfo = QrAuthVault;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3EF2FD591BA4721B00301CD9 /* QrAuthVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QrAuthVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3EF2FD611BA4721B00301CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3EF2FD641BA4721B00301CD9 /* QrAuthVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QrAuthVault.xcdatamodel; sourceTree = "<group>"; };
+		3EF2FD661BA4721B00301CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3EF2FD691BA4721B00301CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3EF2FD6B1BA4721B00301CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QrAuthVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrAuthVaultTests.swift; sourceTree = "<group>"; };
+		3EF2FD761BA4721B00301CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EF2FD561BA4721B00301CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF2FD6D1BA4721B00301CD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3EF2FD501BA4721B00301CD9 = {
+			isa = PBXGroup;
+			children = (
+				3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */,
+				3EF2FD731BA4721B00301CD9 /* QrAuthVaultTests */,
+				3EF2FD5A1BA4721B00301CD9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3EF2FD5A1BA4721B00301CD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EF2FD591BA4721B00301CD9 /* QrAuthVault.app */,
+				3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */ = {
+			isa = PBXGroup;
+			children = (
+				3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */,
+				3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */,
+				3EF2FD601BA4721B00301CD9 /* Main.storyboard */,
+				3EF2FD661BA4721B00301CD9 /* Assets.xcassets */,
+				3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */,
+				3EF2FD6B1BA4721B00301CD9 /* Info.plist */,
+				3EF2FD631BA4721B00301CD9 /* QrAuthVault.xcdatamodeld */,
+			);
+			path = QrAuthVault;
+			sourceTree = "<group>";
+		};
+		3EF2FD731BA4721B00301CD9 /* QrAuthVaultTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */,
+				3EF2FD761BA4721B00301CD9 /* Info.plist */,
+			);
+			path = QrAuthVaultTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3EF2FD581BA4721B00301CD9 /* QrAuthVault */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EF2FD791BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVault" */;
+			buildPhases = (
+				3EF2FD551BA4721B00301CD9 /* Sources */,
+				3EF2FD561BA4721B00301CD9 /* Frameworks */,
+				3EF2FD571BA4721B00301CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QrAuthVault;
+			productName = QrAuthVault;
+			productReference = 3EF2FD591BA4721B00301CD9 /* QrAuthVault.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3EF2FD6F1BA4721B00301CD9 /* QrAuthVaultTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EF2FD7C1BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVaultTests" */;
+			buildPhases = (
+				3EF2FD6C1BA4721B00301CD9 /* Sources */,
+				3EF2FD6D1BA4721B00301CD9 /* Frameworks */,
+				3EF2FD6E1BA4721B00301CD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EF2FD721BA4721B00301CD9 /* PBXTargetDependency */,
+			);
+			name = QrAuthVaultTests;
+			productName = QrAuthVaultTests;
+			productReference = 3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3EF2FD511BA4721B00301CD9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Valera Chevtaev";
+				TargetAttributes = {
+					3EF2FD581BA4721B00301CD9 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					3EF2FD6F1BA4721B00301CD9 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 3EF2FD581BA4721B00301CD9;
+					};
+				};
+			};
+			buildConfigurationList = 3EF2FD541BA4721B00301CD9 /* Build configuration list for PBXProject "QrAuthVault" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3EF2FD501BA4721B00301CD9;
+			productRefGroup = 3EF2FD5A1BA4721B00301CD9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3EF2FD581BA4721B00301CD9 /* QrAuthVault */,
+				3EF2FD6F1BA4721B00301CD9 /* QrAuthVaultTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3EF2FD571BA4721B00301CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */,
+				3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */,
+				3EF2FD621BA4721B00301CD9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF2FD6E1BA4721B00301CD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EF2FD551BA4721B00301CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF2FD651BA4721B00301CD9 /* QrAuthVault.xcdatamodeld in Sources */,
+				3EF2FD5F1BA4721B00301CD9 /* ViewController.swift in Sources */,
+				3EF2FD5D1BA4721B00301CD9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EF2FD6C1BA4721B00301CD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF2FD751BA4721B00301CD9 /* QrAuthVaultTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EF2FD721BA4721B00301CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EF2FD581BA4721B00301CD9 /* QrAuthVault */;
+			targetProxy = 3EF2FD711BA4721B00301CD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3EF2FD601BA4721B00301CD9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF2FD611BA4721B00301CD9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF2FD691BA4721B00301CD9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3EF2FD771BA4721B00301CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3EF2FD781BA4721B00301CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3EF2FD7A1BA4721B00301CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QrAuthVault/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.chupakabr.dev.osx.QrAuthVault;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3EF2FD7B1BA4721B00301CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QrAuthVault/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.chupakabr.dev.osx.QrAuthVault;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3EF2FD7D1BA4721B00301CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QrAuthVaultTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.chupakabr.dev.osx.QrAuthVaultTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QrAuthVault.app/QrAuthVault";
+			};
+			name = Debug;
+		};
+		3EF2FD7E1BA4721B00301CD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QrAuthVaultTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.chupakabr.dev.osx.QrAuthVaultTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QrAuthVault.app/QrAuthVault";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3EF2FD541BA4721B00301CD9 /* Build configuration list for PBXProject "QrAuthVault" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF2FD771BA4721B00301CD9 /* Debug */,
+				3EF2FD781BA4721B00301CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EF2FD791BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVault" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF2FD7A1BA4721B00301CD9 /* Debug */,
+				3EF2FD7B1BA4721B00301CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3EF2FD7C1BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVaultTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EF2FD7D1BA4721B00301CD9 /* Debug */,
+				3EF2FD7E1BA4721B00301CD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3EF2FD631BA4721B00301CD9 /* QrAuthVault.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3EF2FD641BA4721B00301CD9 /* QrAuthVault.xcdatamodel */,
+			);
+			currentVersion = 3EF2FD641BA4721B00301CD9 /* QrAuthVault.xcdatamodel */;
+			path = QrAuthVault.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3EF2FD511BA4721B00301CD9 /* Project object */;
+}
