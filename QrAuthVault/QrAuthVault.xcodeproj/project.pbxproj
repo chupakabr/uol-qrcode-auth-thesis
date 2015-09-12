@@ -14,6 +14,8 @@
 		3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD661BA4721B00301CD9 /* Assets.xcassets */; };
 		3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */; };
 		3EF2FD751BA4721B00301CD9 /* QrAuthVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */; };
+		3EF2FD8D1BA4B34400301CD9 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */; };
+		3EF2FD8E1BA4B34400301CD9 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QrAuthVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrAuthVaultTests.swift; sourceTree = "<group>"; };
 		3EF2FD761BA4721B00301CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = "Libs/CleanroomASL/build/Debug-iphoneos/CleanroomASL.framework"; sourceTree = "<group>"; };
+		3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = "Libs/CleanroomLogger/build/Debug-iphoneos/CleanroomLogger.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EF2FD8D1BA4B34400301CD9 /* CleanroomASL.framework in Frameworks */,
+				3EF2FD8E1BA4B34400301CD9 /* CleanroomLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,8 @@
 		3EF2FD501BA4721B00301CD9 = {
 			isa = PBXGroup;
 			children = (
+				3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */,
+				3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */,
 				3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */,
 				3EF2FD731BA4721B00301CD9 /* QrAuthVaultTests */,
 				3EF2FD5A1BA4721B00301CD9 /* Products */,
@@ -389,6 +397,7 @@
 				3EF2FD7B1BA4721B00301CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EF2FD7C1BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVaultTests" */ = {
 			isa = XCConfigurationList;
@@ -397,6 +406,7 @@
 				3EF2FD7E1BA4721B00301CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

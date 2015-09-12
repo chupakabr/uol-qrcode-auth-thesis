@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CleanroomLogger
 
 class ViewController: UIViewController {
 

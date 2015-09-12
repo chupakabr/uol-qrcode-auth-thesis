@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F9CB73B84AAC4DF4FDAC59E7AE333891CE32959C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6E178D33B8AB3FE5274471155CEF821BFD79B75D" : 0,
+    "F9CB73B84AAC4DF4FDAC59E7AE333891CE32959C" : 0,
+    "D8B77186584699D3376BE96D8D99394FFE1062A4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "362E1AD6-B6A1-491A-9596-88DF2572151B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6E178D33B8AB3FE5274471155CEF821BFD79B75D" : "..",
+    "F9CB73B84AAC4DF4FDAC59E7AE333891CE32959C" : "CleanroomLogger\/",
+    "D8B77186584699D3376BE96D8D99394FFE1062A4" : "CleanroomLogger\/Libraries\/CleanroomASL\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CleanroomLogger",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CleanroomLogger.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:chupakabr\/footyninja-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6E178D33B8AB3FE5274471155CEF821BFD79B75D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/emaloney\/CleanroomASL.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D8B77186584699D3376BE96D8D99394FFE1062A4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/emaloney\/CleanroomLogger.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F9CB73B84AAC4DF4FDAC59E7AE333891CE32959C"
+    }
+  ]
+}

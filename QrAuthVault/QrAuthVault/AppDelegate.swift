@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CleanroomLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
