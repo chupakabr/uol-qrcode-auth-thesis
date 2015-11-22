@@ -1,0 +1,15 @@
+=Dropbox
+
+
+
+
+=TODO
+
+https://www.dropbox.com/sh/ghdeuyu92y389jh/AAC8MXQwaOzB0CkVxL8Xt3_Ja?dl=0
+
++ generate QR code with: timestamp, website base URL
++ input username / password in extension settings
+- auth to Dropbox when extension starts
+- poll for text file in Dropbox and read when ready
+- parse login and password from read text file
+- authenticate user on gmail.com using parsed credentials

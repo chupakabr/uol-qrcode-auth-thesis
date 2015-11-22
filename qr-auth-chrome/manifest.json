@@ -10,14 +10,21 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "src/bg/background.html",
-    "persistent": true
-  },
   "options_page": "src/options_custom/index.html",
+  /* is being called on tab open, i.e. match */
+  "background": {
+//    "scripts": [
+//      "js/jquery/jquery.js",
+//      "js/qr/qrcode.js",
+//      "src/bg/background.js"
+//    ],
+    "page": "src/bg/background.html",
+    "persistent": false
+  },
+  /* is being shown on extension icon clicked */
   "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
+    "default_icon": "icons/icon48.png",
+    "default_title": "Authenticate",
     "default_popup": "src/page_action/page_action.html"
   },
   "permissions": [
@@ -27,15 +34,11 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.google.com/*"
+        "http://*/*",
+        "https://*/*"
       ],
       "css": [
         "src/inject/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.google.com/*"
       ],
       "js": [
         "src/inject/inject.js"
