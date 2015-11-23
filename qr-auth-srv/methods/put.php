@@ -15,7 +15,7 @@ $data = fgets($putdata, QA_MAX_FILE_SIZE);
 fclose($putdata);
 $info = explode(":", $data);
 $cnt = count($info);
-if ($cnt != 3) {
+if ($cnt != 4) {
     echo "ERR malformed input ($cnt): [$data]\n";
     exit(2);
 }
@@ -23,13 +23,14 @@ if ($cnt != 3) {
 // Open a file for writing.
 // Normalize file name: only characters plus a dot.
 $id = QA_normalize_id($info[0]);
-$username = $info[1];
-$password = $info[2];
+$timestamp = $info[1];
+$username = $info[2];
+$password = $info[3];
 
 $filepath = QA_filepath_by_id($id);
 $fp = fopen($filepath, "w");
 
-fwrite($fp, "$username:$password", QA_MAX_FILE_SIZE);
+fwrite($fp, "$timestamp:$username:$password", QA_MAX_FILE_SIZE);
 fclose($fp);
 
 //echo "written [$username:$password] to $filepath\n";
