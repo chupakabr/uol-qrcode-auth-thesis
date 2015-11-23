@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] != "GET") {
     exit(1);
 }
 
-// TODO Check file name: only characters plus a dot
-$id = $_GET["id"];
+// Normalize file name: only characters plus a dot
+$id = QA_normalize_id($_GET["id"]);
 $filepath = QA_filepath_by_id($id);
 
 $input = fopen($filepath, "r");

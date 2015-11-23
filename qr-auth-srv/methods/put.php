@@ -7,11 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] != "PUT") {
     exit(1);
 }
 
-/* PUT data comes in on the stdin stream */
+// PUT data comes in on the stdin stream
 $putdata = fopen("php://input", "r");
 
-/* Read the data 1 KB at a time
-   and write to the file */
+// Read the data 1 KB at a time and write to the file
 $data = fgets($putdata, QA_MAX_FILE_SIZE);
 fclose($putdata);
 $info = explode(":", $data);
@@ -21,9 +20,9 @@ if ($cnt != 3) {
     exit(2);
 }
 
-/* Open a file for writing */
-// TODO Check file name: only characters plus a dot
-$id = $info[0];
+// Open a file for writing.
+// Normalize file name: only characters plus a dot.
+$id = QA_normalize_id($info[0]);
 $username = $info[1];
 $password = $info[2];
 

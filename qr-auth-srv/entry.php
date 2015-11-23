@@ -23,3 +23,8 @@ function QA_generateRandomString($length = 16) {
     }
     return $randomString;
 }
+
+function QA_normalize_id($id) {
+    $id = reg_replace("/[^0-9_\-\.a-zA-Z]/", "", $id);
+    return $id;
+}
