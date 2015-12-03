@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E784B0A1C10A2620027C160 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; };
+		3E784B0B1C10A2620027C160 /* CleanroomASL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E784B0D1C10A2620027C160 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */; };
+		3E784B0E1C10A2620027C160 /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E784B111C10AC010027C160 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B101C10AC010027C160 /* LocalAuthentication.framework */; };
+		3E784B151C10B5400027C160 /* EditCredsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E784B141C10B5400027C160 /* EditCredsViewController.swift */; };
 		3EF2FD5D1BA4721B00301CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */; };
 		3EF2FD5F1BA4721B00301CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */; };
 		3EF2FD621BA4721B00301CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD601BA4721B00301CD9 /* Main.storyboard */; };
@@ -14,8 +20,6 @@
 		3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD661BA4721B00301CD9 /* Assets.xcassets */; };
 		3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */; };
 		3EF2FD751BA4721B00301CD9 /* QrAuthVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */; };
-		3EF2FD8D1BA4B34400301CD9 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */; };
-		3EF2FD8E1BA4B34400301CD9 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +32,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3E784B0F1C10A2630027C160 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3E784B0B1C10A2620027C160 /* CleanroomASL.framework in Embed Frameworks */,
+				3E784B0E1C10A2620027C160 /* CleanroomLogger.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3E784B091C10A2620027C160 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomASL.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomASL.framework"; sourceTree = "<absolute>"; };
+		3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomLogger.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomLogger.framework"; sourceTree = "<absolute>"; };
+		3E784B101C10AC010027C160 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		3E784B141C10B5400027C160 /* EditCredsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCredsViewController.swift; sourceTree = "<group>"; };
 		3EF2FD591BA4721B00301CD9 /* QrAuthVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QrAuthVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,8 +63,6 @@
 		3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QrAuthVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrAuthVaultTests.swift; sourceTree = "<group>"; };
 		3EF2FD761BA4721B00301CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomASL.framework; path = "Libs/CleanroomASL/build/Debug-iphoneos/CleanroomASL.framework"; sourceTree = "<group>"; };
-		3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = "Libs/CleanroomLogger/build/Debug-iphoneos/CleanroomLogger.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,8 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EF2FD8D1BA4B34400301CD9 /* CleanroomASL.framework in Frameworks */,
-				3EF2FD8E1BA4B34400301CD9 /* CleanroomLogger.framework in Frameworks */,
+				3E784B111C10AC010027C160 /* LocalAuthentication.framework in Frameworks */,
+				3E784B0A1C10A2620027C160 /* CleanroomASL.framework in Frameworks */,
+				3E784B0D1C10A2620027C160 /* CleanroomLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +89,9 @@
 		3EF2FD501BA4721B00301CD9 = {
 			isa = PBXGroup;
 			children = (
-				3EF2FD8B1BA4B34400301CD9 /* CleanroomASL.framework */,
-				3EF2FD8C1BA4B34400301CD9 /* CleanroomLogger.framework */,
+				3E784B101C10AC010027C160 /* LocalAuthentication.framework */,
+				3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */,
+				3E784B091C10A2620027C160 /* CleanroomASL.framework */,
 				3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */,
 				3EF2FD731BA4721B00301CD9 /* QrAuthVaultTests */,
 				3EF2FD5A1BA4721B00301CD9 /* Products */,
@@ -88,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */,
+				3E784B141C10B5400027C160 /* EditCredsViewController.swift */,
 				3EF2FD5E1BA4721B00301CD9 /* ViewController.swift */,
 				3EF2FD601BA4721B00301CD9 /* Main.storyboard */,
 				3EF2FD661BA4721B00301CD9 /* Assets.xcassets */,
@@ -117,6 +141,7 @@
 				3EF2FD551BA4721B00301CD9 /* Sources */,
 				3EF2FD561BA4721B00301CD9 /* Frameworks */,
 				3EF2FD571BA4721B00301CD9 /* Resources */,
+				3E784B0F1C10A2630027C160 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,6 +234,7 @@
 			files = (
 				3EF2FD651BA4721B00301CD9 /* QrAuthVault.xcdatamodeld in Sources */,
 				3EF2FD5F1BA4721B00301CD9 /* ViewController.swift in Sources */,
+				3E784B151C10B5400027C160 /* EditCredsViewController.swift in Sources */,
 				3EF2FD5D1BA4721B00301CD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

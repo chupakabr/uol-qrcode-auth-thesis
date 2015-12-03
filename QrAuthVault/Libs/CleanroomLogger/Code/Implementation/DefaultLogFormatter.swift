@@ -147,7 +147,8 @@ public struct DefaultLogFormatter: LogFormatter
     public static func stringRepresentationForCallingFile(filePath: String, line: Int)
         -> String
     {
-        let file = filePath.pathComponents.last ?? "(unknown)"
+        let fileUrl = NSURL(fileURLWithPath: filePath)
+        let file = fileUrl.pathComponents != nil ? fileUrl.pathComponents!.last: "(unknown)"
 
         return "\(file):\(line)"
     }
@@ -207,7 +208,7 @@ public struct DefaultLogFormatter: LogFormatter
     public static func stringRepresentationForValue(value: Any)
         -> String
     {
-        let type = reflect(value).summary
+        let type = Mirror(reflecting:value).subjectType
 
         let desc: String
         if let debugValue = value as? CustomDebugStringConvertible {

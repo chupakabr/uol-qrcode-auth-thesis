@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Authenticate VC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Authenticate VC" customClass="ViewController" customModule="QrAuthVault" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,89 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authenticate with your fingerprint to proceed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cds-zg-bwb">
+                                <rect key="frame" x="20" y="212" width="560" height="65"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Na-UQ-4xn">
+                                <rect key="frame" x="213" y="280" width="174" height="39"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="174" id="wL3-lH-6lS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Authenticate"/>
+                                <connections>
+                                    <action selector="authenticate" destination="BYZ-38-t0r" eventType="touchUpInside" id="mhS-J2-12L"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cds-zg-bwb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="192" id="9ie-iO-PBx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4Na-UQ-4xn" secondAttribute="bottom" constant="281" id="bM3-QU-Uf6"/>
+                            <constraint firstItem="4Na-UQ-4xn" firstAttribute="centerX" secondItem="Cds-zg-bwb" secondAttribute="centerX" id="f6u-Kh-dCN"/>
+                            <constraint firstItem="4Na-UQ-4xn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ghV-d2-50d"/>
+                            <constraint firstItem="Cds-zg-bwb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qwu-rg-KAS"/>
+                            <constraint firstItem="4Na-UQ-4xn" firstAttribute="top" secondItem="Cds-zg-bwb" secondAttribute="bottom" constant="3" id="smn-8n-b27"/>
+                            <constraint firstItem="Cds-zg-bwb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="trE-qz-lof"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="klK-vV-HP9" kind="show" identifier="auth_done" id="EGO-7n-sv1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="75" y="402"/>
+        </scene>
+        <!--Edit Credentials VC-->
+        <scene sceneID="q7C-We-s0S">
+            <objects>
+                <viewController id="klK-vV-HP9" userLabel="Edit Credentials VC" customClass="EditCredsViewController" customModule="QrAuthVault" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YGD-gx-NbA"/>
+                        <viewControllerLayoutGuide type="bottom" id="pTU-Ia-N4K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V9H-9Y-HHf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit my body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVL-ij-tlo">
+                                <rect key="frame" x="250" y="289" width="100" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZJ-Oa-cCO">
+                                <rect key="frame" x="20" y="20" width="95" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Save and lock"/>
+                                <connections>
+                                    <action selector="saveAndLock" destination="klK-vV-HP9" eventType="touchUpInside" id="y52-oU-DHu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yVL-ij-tlo" firstAttribute="centerX" secondItem="V9H-9Y-HHf" secondAttribute="centerX" id="Ffb-hp-b61"/>
+                            <constraint firstItem="xZJ-Oa-cCO" firstAttribute="top" secondItem="YGD-gx-NbA" secondAttribute="bottom" id="MlR-yO-cUf"/>
+                            <constraint firstItem="yVL-ij-tlo" firstAttribute="top" secondItem="YGD-gx-NbA" secondAttribute="bottom" constant="269" id="N4i-Fi-PBQ"/>
+                            <constraint firstItem="yVL-ij-tlo" firstAttribute="centerY" secondItem="V9H-9Y-HHf" secondAttribute="centerY" id="qGT-c9-N3u"/>
+                            <constraint firstItem="xZJ-Oa-cCO" firstAttribute="leading" secondItem="V9H-9Y-HHf" secondAttribute="leadingMargin" id="qg9-hv-M27"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYv-Y2-A2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="370"/>
         </scene>
     </scenes>
 </document>

@@ -126,7 +126,7 @@ public final class ASLClient
             options &= ~Options.StdErr.rawValue
         }
 
-        self.client = asl_open(self.sender ?? nil, self.facility ?? nil, options)
+        self.client = asl_open((self.sender ?? nil)!, (self.facility ?? nil)!, options)
 
         asl_set_filter(self.client, self.filterMask)
 
@@ -141,7 +141,7 @@ public final class ASLClient
 
     private func dispatcher(currentQueue: dispatch_queue_t? = nil, synchronously: Bool = false)(block: dispatch_block_t)
     {
-        let shouldDispatch = currentQueue == nil || self.queue != currentQueue!
+        let shouldDispatch = currentQueue == nil || !self.queue.isEqual(currentQueue!)
         if shouldDispatch {
             if synchronously {
                 return dispatch_sync(queue, block)

@@ -402,7 +402,7 @@ public final class ASLQueryObject: ASLObject
     */
     public func setQueryKey(key: ASLAttributeKey, value: String?, operation: Operation, modifiers: OperationModifiers)
     {
-        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, value?.cStringUsingEncoding(NSUTF8StringEncoding)! ?? nil, operation.rawValue | modifiers.rawValue)
+        asl_set_query(aslObject, key.rawValue.cStringUsingEncoding(NSUTF8StringEncoding)!, (value?.cStringUsingEncoding(NSUTF8StringEncoding)! ?? nil)!, operation.rawValue | modifiers.rawValue)
     }
 
     /**
