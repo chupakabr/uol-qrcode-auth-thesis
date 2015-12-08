@@ -33,3 +33,6 @@ DerivedData
 Carthage/Build
 Build
 qr-auth-chrome/.idea
+QrAuthVault/Pods/Target Support Files/Pods
+QrAuthVault/Pods
+Podfile.lock

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0BE5121C174A5D0062F1D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0BE5111C174A5D0062F1D1 /* AVFoundation.framework */; };
 		3E784B0A1C10A2620027C160 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; };
 		3E784B0B1C10A2620027C160 /* CleanroomASL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E784B0D1C10A2620027C160 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */; };
@@ -20,6 +21,7 @@
 		3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD661BA4721B00301CD9 /* Assets.xcassets */; };
 		3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2FD681BA4721B00301CD9 /* LaunchScreen.storyboard */; };
 		3EF2FD751BA4721B00301CD9 /* QrAuthVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */; };
+		A277DC1A8F5C237FB95085D7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA32C48002904FB34EABE1A1 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E0BE5111C174A5D0062F1D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E784B091C10A2620027C160 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomASL.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomASL.framework"; sourceTree = "<absolute>"; };
 		3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomLogger.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomLogger.framework"; sourceTree = "<absolute>"; };
 		3E784B101C10AC010027C160 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -63,6 +66,9 @@
 		3EF2FD701BA4721B00301CD9 /* QrAuthVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QrAuthVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF2FD741BA4721B00301CD9 /* QrAuthVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrAuthVaultTests.swift; sourceTree = "<group>"; };
 		3EF2FD761BA4721B00301CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C17427793EB2F2B8BF9273D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D743B7BC5CF5A7621308C528 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EA32C48002904FB34EABE1A1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +76,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0BE5121C174A5D0062F1D1 /* AVFoundation.framework in Frameworks */,
 				3E784B111C10AC010027C160 /* LocalAuthentication.framework in Frameworks */,
 				3E784B0A1C10A2620027C160 /* CleanroomASL.framework in Frameworks */,
 				3E784B0D1C10A2620027C160 /* CleanroomLogger.framework in Frameworks */,
+				A277DC1A8F5C237FB95085D7 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,8 @@
 				3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */,
 				3EF2FD731BA4721B00301CD9 /* QrAuthVaultTests */,
 				3EF2FD5A1BA4721B00301CD9 /* Products */,
+				755619A7739A737F8A37450E /* Pods */,
+				65A76241D936A9432ED641F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +141,24 @@
 			path = QrAuthVaultTests;
 			sourceTree = "<group>";
 		};
+		65A76241D936A9432ED641F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E0BE5111C174A5D0062F1D1 /* AVFoundation.framework */,
+				EA32C48002904FB34EABE1A1 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		755619A7739A737F8A37450E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D743B7BC5CF5A7621308C528 /* Pods.debug.xcconfig */,
+				C17427793EB2F2B8BF9273D5 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,10 +166,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EF2FD791BA4721B00301CD9 /* Build configuration list for PBXNativeTarget "QrAuthVault" */;
 			buildPhases = (
+				90E73419F7E9893A2F904D96 /* Check Pods Manifest.lock */,
 				3EF2FD551BA4721B00301CD9 /* Sources */,
 				3EF2FD561BA4721B00301CD9 /* Frameworks */,
 				3EF2FD571BA4721B00301CD9 /* Resources */,
 				3E784B0F1C10A2630027C160 /* Embed Frameworks */,
+				69A7B63A4C344AF830D0629C /* Embed Pods Frameworks */,
+				BD026FBE50C760D5CBED467B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -226,6 +257,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69A7B63A4C344AF830D0629C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90E73419F7E9893A2F904D96 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD026FBE50C760D5CBED467B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3EF2FD551BA4721B00301CD9 /* Sources */ = {
@@ -360,6 +439,7 @@
 		};
 		3EF2FD7A1BA4721B00301CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D743B7BC5CF5A7621308C528 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QrAuthVault/Info.plist;
@@ -371,6 +451,7 @@
 		};
 		3EF2FD7B1BA4721B00301CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C17427793EB2F2B8BF9273D5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QrAuthVault/Info.plist;

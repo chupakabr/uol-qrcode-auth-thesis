@@ -39,6 +39,8 @@ class ViewController: UIViewController {
 
     
     @IBAction func authenticate() {
+        print("++ authenticate")
+        
         // 1.
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:nil) {
             
