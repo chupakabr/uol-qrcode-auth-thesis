@@ -13,3 +13,12 @@ https://www.dropbox.com/sh/ghdeuyu92y389jh/AAC8MXQwaOzB0CkVxL8Xt3_Ja?dl=0
 - poll for text file in Dropbox and read when ready
 - parse login and password from read text file
 - authenticate user on gmail.com using parsed credentials
+
+
+=HTTP requests
+
+curl -v http://qrauth.chupakabr.ru/methods/get.php?id=asdasdasd
+
+curl -v http://qrauth.chupakabr.ru/methods/get.php?id=nonExistingId
+
+curl -v -X PUT http://qrauth.chupakabr.ru/methods/get.php?id=123 --data "ts=...."

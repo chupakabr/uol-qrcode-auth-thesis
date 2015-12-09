@@ -4,6 +4,7 @@ require_once "../entry.php";
 
 if ($_SERVER['REQUEST_METHOD'] != "PUT") {
     echo "ERR invalid HTTP method\n";
+    http_response_code(405);
     exit(1);
 }
 
@@ -17,6 +18,7 @@ $info = explode(":", $data);
 $cnt = count($info);
 if ($cnt != 4) {
     echo "ERR malformed input ($cnt): [$data]\n";
+    http_response_code(400);
     exit(2);
 }
 
@@ -34,3 +36,5 @@ fwrite($fp, "$timestamp:$username:$password", QA_MAX_FILE_SIZE);
 fclose($fp);
 
 //echo "written [$username:$password] to $filepath\n";
+
+http_response_code(200);

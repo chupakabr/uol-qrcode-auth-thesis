@@ -6,6 +6,7 @@ require_once "../entry.php";
 
 if ($_SERVER['REQUEST_METHOD'] != "GET") {
     echo "ERR invalid HTTP method\n";
+    http_response_code(405);
     exit(1);
 }
 
@@ -13,12 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] != "GET") {
 $id = QA_normalize_id($_GET["id"]);
 $filepath = QA_filepath_by_id($id);
 
-$input = fopen($filepath, "r");
+if (file_exists($filepath)) {
+    $input = fopen($filepath, "r");
 
-// Read the data 1 KB at a time and write to the file
-while ($data = fread($input, QA_MAX_FILE_SIZE)) {
-    echo $data;
+    // Read the data 1 KB at a time and write to the file
+    while ($data = fread($input, QA_MAX_FILE_SIZE)) {
+        echo $data;
+    }
+    fclose($input);
+    echo "\n";
+
+    http_response_code(200);
+} else {
+    http_response_code(404);
 }
-fclose($input);
-echo "\n";
-
