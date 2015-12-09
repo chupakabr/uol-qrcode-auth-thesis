@@ -22,3 +22,12 @@ curl -v http://qrauth.chupakabr.ru/methods/get.php?id=asdasdasd
 curl -v http://qrauth.chupakabr.ru/methods/get.php?id=nonExistingId
 
 curl -v -X PUT http://qrauth.chupakabr.ru/methods/get.php?id=123 --data "ts=...."
+
+
+
+=SSL
+
+- generate CSR: https://www.instantssl.com/ssl-certificate-support/csr-generation/ssl-certificate-mod-ssl.html?key5sk1=7dddc7288227034f668c14e9efab32a3fb1b0ae3
+- apache install: https://support.comodo.com/index.php?/Default/Knowledgebase/Article/View/637/37/
+- free HTTPS: https://secure.comodo.net/products/SSLIdASignup1a
+  https://secure.comodo.net , myltik:A1
