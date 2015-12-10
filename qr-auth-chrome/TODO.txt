@@ -1,27 +1,24 @@
-=Dropbox
-
-
-
 
 =TODO
 
-https://www.dropbox.com/sh/ghdeuyu92y389jh/AAC8MXQwaOzB0CkVxL8Xt3_Ja?dl=0
+Auth page:
+https://accounts.google.com/AddSession?sacu=1#identifier
 
 + generate QR code with: timestamp, website base URL
-+ input username / password in extension settings
-- auth to Dropbox when extension starts
-- poll for text file in Dropbox and read when ready
-- parse login and password from read text file
-- authenticate user on gmail.com using parsed credentials
+-? input username / password in extension settings
+-? auth to Dropbox when extension starts
++ poll for text file in file sharing service and read when ready
++ parse login and password from read text file
++ authenticate user on gmail.com using parsed credentials: https://accounts.google.com/AddSession?sacu=1#identifier
 
 
 =HTTP requests
 
-curl -v http://qrauth.chupakabr.ru/methods/get.php?id=asdasdasd
+curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=asdasdasd
 
-curl -v http://qrauth.chupakabr.ru/methods/get.php?id=nonExistingId
+curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=nonExistingId
 
-curl -v -X PUT http://qrauth.chupakabr.ru/methods/get.php?id=123 --data "ts=...."
+curl -v -X PUT https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=123 --data "ts=...."
 
 
 

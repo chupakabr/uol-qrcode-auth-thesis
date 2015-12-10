@@ -14,7 +14,8 @@
   /* is being called on tab open, i.e. match */
   "background": {
 //    "scripts": [
-//      "js/jquery/jquery.js",
+//      "js/jquery/jquery.min.js",
+//      "js/jquery/jquery.md5.js",
 //      "js/qr/qrcode.js",
 //      "src/bg/background.js"
 //    ],
@@ -34,13 +35,14 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://gmail.com/*",
+        "https://accounts.google.com/*"
       ],
       "css": [
         "src/inject/inject.css"
       ],
       "js": [
+        "js/jquery/jquery.min.js",
         "src/inject/inject.js"
       ]
     }
