@@ -18,7 +18,7 @@ curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=asdasdasd
 
 curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=nonExistingId
 
-curl -v -X PUT https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=123 --data "ts=...."
+curl -v -X PUT https://chupakabr.ru/extra-test-qr-api/methods/put.php --data "ts=...."
 
 
 

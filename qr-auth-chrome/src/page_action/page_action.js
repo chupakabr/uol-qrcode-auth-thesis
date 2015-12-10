@@ -34,7 +34,7 @@ chrome.extension.sendMessage({"name": "page_action.open"}, function(response) {
     var now = Date.now();
     var id = qrauth.md5(seq + now);
     new QRCode(document.getElementById("qrcode"), {
-        text: '{"url":"https://gmail.com", "ts":' + now + ',"seq":"' + now + '"}',
+        text: '{"url":"https://gmail.com", "ts":' + now + ',"seq":"' + seq + '"}',
         width: 128,
         height: 128,
         colorDark : "#000000",
