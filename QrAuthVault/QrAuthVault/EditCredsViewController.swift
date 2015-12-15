@@ -12,9 +12,13 @@ import QRCodeReader
 import AVFoundation
 import Alamofire
 import CryptoSwift
+import CoreData
 
 class EditCredsViewController: UIViewController {
 
+    private let defaultLoginUrl = "https://accounts.google.com/ServiceLogin"
+    private let defaultService = "google"
+    
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scannedQrText: UITextView!
@@ -26,6 +30,11 @@ class EditCredsViewController: UIViewController {
         super.viewDidLoad()
         
         // TODO
+        let savedModel = loadEntry(defaultService)
+        if let savedModel = savedModel {
+            self.usernameTextField.text = savedModel.usr
+            self.passwordTextField.text = savedModel.pwd
+        }
     }
     
     // MARK: - UI actions
@@ -82,14 +91,23 @@ class EditCredsViewController: UIViewController {
     
     @IBAction func save() {
         print("++ save")
-        saveCredentials()
+        
+        do {
+            try saveCredentials()
+        } catch let err as NSError {
+            print("ERROR Cannot persist credentials to database: \(err)")
+        }
     }
     
     @IBAction func saveAndLock() {
-        print("++ save and lock")
+        print("++ lock")
         
         // Save
-        saveCredentials()
+        do {
+            try saveCredentials()
+        } catch let err as NSError {
+            print("ERROR Cannot persist credentials to database: \(err)")
+        }
         
         // Lock: Go back to main/auth screen
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -97,9 +115,24 @@ class EditCredsViewController: UIViewController {
     
     //
     // Save credentials to the vault
-    private func saveCredentials() {
-        // TODO
-        print("TODO save credentials")
+    // TODO Perform on background thread
+    private func saveCredentials() throws {
+        print("saving credentials...")
+        
+        let credentials = loadCredentials(defaultLoginUrl)
+        guard let credentialsGuarded = credentials else {
+            throw NSError(domain: "Cannot read credentials", code: 1, userInfo: nil)
+        }
+        
+        // try to load existing entry in DB first
+        var model = loadEntry(credentialsGuarded.service)
+        if model == nil {
+            model = Credential(entity: getDataEntity(), insertIntoManagedObjectContext: getMOC())
+        }
+        model!.usr = credentialsGuarded.username
+        model!.pwd = credentialsGuarded.password
+        model!.service = credentialsGuarded.service
+        model!.save()
     }
     
     //
@@ -110,7 +143,7 @@ class EditCredsViewController: UIViewController {
             throw NSError(domain: "Empty parameters on success", code: 2, userInfo: nil)
         }
         
-        // Calculate md5 of seq+ts to product ID
+        // Calculate md5 of seq+ts to produce ID
         let id = "\(seq)\(ts)".md5()
         
         // Success: update UI
@@ -159,10 +192,43 @@ class EditCredsViewController: UIViewController {
     
     //
     // Load user credentials for specified URL from the vault
+    // TODO Evaluate service using URL passed as parameter
     private func loadCredentials(url: String) -> LoginInfo? {
         if let username = usernameTextField.text, password = passwordTextField.text {
-            return LoginInfo(service: "google", username: username, password: password)
+            return LoginInfo(service: defaultService, username: username, password: password)
         }
+        return nil
+    }
+    
+    
+    //
+    // MARK: - Database operations
+    
+    private func getSharedDelegate() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+    
+    private func getMOC() -> NSManagedObjectContext {
+        return getSharedDelegate().managedObjectContext
+    }
+    
+    private func getDataEntity() -> NSEntityDescription {
+        // cannot be nil
+        return NSEntityDescription.entityForName("Credential", inManagedObjectContext: getMOC())!
+    }
+    
+    private func loadEntry(service: String) -> Credential? {
+        let fetchRequest = NSFetchRequest(entityName: "Credential")
+        fetchRequest.predicate = NSPredicate(format: "service == %@", service)
+        do {
+            let res = try getMOC().executeFetchRequest(fetchRequest)
+            if res.count > 0 {
+                return res[0] as? Credential
+            }
+        } catch let err as NSError {
+            print("ERROR Cannot load entries from database: \(err)")
+        }
+        
         return nil
     }
 }
