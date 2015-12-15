@@ -28,87 +28,99 @@ qrauth.md5 = function(str) {
     return $.md5(str);
 };
 
-chrome.extension.sendMessage({"name": "page_action.open"}, function(response) {
-    // Generate QR code
-    var seq = qrauth.replacePattern("ccvvccvcvcvcccvv"); // 16 chars
-    var now = Date.now();
-    var id = qrauth.md5(seq + now);
-    new QRCode(document.getElementById("qrcode"), {
-        text: '{"url":"https://gmail.com", "ts":' + now + ',"seq":"' + seq + '"}',
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
-
-    console.info("requested with seq="+seq+", ts="+now+", id="+id);
-
-    // Only if not running yet
-    if (qrauth.waiting) {
-        return;
-    }
-
-    $("#status").text("");
-
-    // Poll for http://qrauth.chupakabr.ru/methods/get.php?id=123
-    qrauth.retry.cur = qrauth.retry.limit;
-    qrauth.waiting = true;
-    (function authFilePolling() {
-        //id = "asdasdasd"; // TODO debug only, remove this line later
-        $.ajax({
-            url: "https://chupakabr.ru/extra-test-qr-api/methods/get.php?id="+id,
-            cache: false,
-            type: "GET",
-            success: function(data, statusText, jqXHR) {
-                qrauth.waiting = false;
-
-                console.info("response: " + statusText);
-                console.info("success - data: " + data);
-                if (data) {
-                    var info = data.split(':', 3);
-                    if (info && info.length == 3) {
-                        var ts = info[0];
-                        var usr = info[1];
-                        var pwd = info[2];
-                        console.info("ts=" + ts + ", user=" + usr + ", pwd=" + pwd);
-
-                        // authorize on gmail.com
-                        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                            chrome.tabs.sendMessage(
-                                tabs[0].id,
-                                {
-                                    "name": "qrauth.do",
-                                    "usr": usr,
-                                    "pwd": pwd,
-                                },
-                                function(response) {
-                                    chrome.extension.sendMessage({"name": "qrauth.fail", msg: ""});
-                                });
-                        });
-
-                        return;
-                    }
-                }
-
-                // Something went wrong?
-                console.info("invalid data from the server");
-                chrome.extension.sendMessage({"name": "qrauth.fail", "msg": "Server error"});
-            },
-            error: function(data) {
-                if (qrauth.retry.cur-- > 0) {
-                    setTimeout(authFilePolling, qrauth.retry.millis);
-                } else {
-                    qrauth.waiting = false;
-                    console.info("error!");
-                    chrome.extension.sendMessage({"name": "qrauth.fail", "msg": "Please check your QrVault app for valid credentials"});
-                }
-            },
-        }).done(function(data, statusText, jqXHR) {
-            console.info("done");
+qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
+    chrome.extension.sendMessage({"name": "page_action.open"}, function (response) {
+        // Generate QR code
+        var seq = qrauth.replacePattern("ccvvccvcvcvcccvv"); // 16 chars
+        var now = Date.now();
+        var id = qrauth.md5(seq + now);
+        var curUrl = currentWebsiteUrl; //"https://gmail.com"; // TODO Get real website URL
+        new QRCode(document.getElementById("qrcode"), {
+            text: '{"url":"' + curUrl + '", "ts":' + now + ',"seq":"' + seq + '"}',
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
         });
-    })();
-});
+
+        console.info("requested with seq=" + seq + ", ts=" + now + ", id=" + id);
+
+        // Only if not running yet
+        if (qrauth.waiting) {
+            return;
+        }
+
+        $("#status").text("");
+
+        // Poll for http://qrauth.chupakabr.ru/methods/get.php?id=123
+        qrauth.retry.cur = qrauth.retry.limit;
+        qrauth.waiting = true;
+        (function authFilePolling() {
+            //id = "asdasdasd"; // TODO debug only, remove this line later
+            $.ajax({
+                url: "https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=" + id,
+                cache: false,
+                type: "GET",
+                success: function (data, statusText, jqXHR) {
+                    qrauth.waiting = false;
+
+                    console.info("response: " + statusText);
+                    console.info("success - data: " + data);
+                    if (data) {
+                        var info = data.split(':', 3);
+                        if (info && info.length == 3) {
+                            var ts = info[0];
+                            var usr = info[1];
+                            var pwd = info[2];
+                            console.info("ts=" + ts + ", user=" + usr + ", pwd=" + pwd);
+
+                            // authorize on gmail.com
+                            chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+                                chrome.tabs.sendMessage(
+                                  tabs[0].id,
+                                  {
+                                      "name": "qrauth.do",
+                                      "usr": usr,
+                                      "pwd": pwd,
+                                  },
+                                  function (response) {
+                                      chrome.extension.sendMessage({"name": "qrauth.fail", msg: ""});
+                                  });
+                            });
+
+                            return;
+                        }
+                    }
+
+                    // Something went wrong?
+                    console.info("invalid data from the server");
+                    chrome.extension.sendMessage({"name": "qrauth.fail", "msg": "Server error"});
+                },
+                error: function (data) {
+                    if (qrauth.retry.cur-- > 0) {
+                        setTimeout(authFilePolling, qrauth.retry.millis);
+                    } else {
+                        qrauth.waiting = false;
+                        console.info("error!");
+                        chrome.extension.sendMessage({
+                            "name": "qrauth.fail",
+                            "msg": "Please check your QrVault app for valid credentials"
+                        });
+                    }
+                },
+            }).done(function (data, statusText, jqXHR) {
+                console.info("done");
+            });
+        })();
+    });
+};
+
+chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+  function(tabs){
+      qrauth.tabUrlAvailable(tabs[0].url);
+  }
+);
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {

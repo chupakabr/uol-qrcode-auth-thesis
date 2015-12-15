@@ -17,6 +17,7 @@
 //      "js/jquery/jquery.min.js",
 //      "js/jquery/jquery.md5.js",
 //      "js/qr/qrcode.js",
+//      "js/crypto/BigInt.js",
 //      "src/bg/background.js"
 //    ],
     "page": "src/bg/background.html",
@@ -29,6 +30,7 @@
     "default_popup": "src/page_action/page_action.html"
   },
   "permissions": [
+    "tabs",
     "https://*/*",
     "http://*/*"
   ],
