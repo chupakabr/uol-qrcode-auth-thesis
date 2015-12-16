@@ -1,3 +1,10 @@
+/**
+ * QrAuthVault
+ *
+ * Extension background scripts
+ *
+ * 2015 (c) Valera Chevtaev
+ */
 // if you checked "fancy-settings" in extensionizr.com, uncomment this lines
 
 // var settings = new Store("settings", {
@@ -12,6 +19,7 @@
 //    console.info("hi from page action");
 //});
 
+// extension events listener
 chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
 

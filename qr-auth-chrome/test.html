@@ -1,0 +1,38 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/crypto/BigInt.js"></script>
+    <script type="text/javascript" src="js/crypto/qrvault-crypto.js"></script>
+    <script language="JavaScript">
+        if (typeof asdasd === "undefined") {
+            asdasd = {};
+            console.info("setting to something");
+        }
+        if (typeof asdasd === "undefined") {
+            console.warn("shouldn't set this twice!");
+        } else {
+            asdasd.something = "kukunya";
+        }
+        console.info("looks fine: " + asdasd.something);
+
+        var currentWebsiteUrl = "https://accounts.google.com/AddSession?sacu=1&continue=https%3A%2F%2Fmail.google.com%2Fmail&hl=en&service=mail#identifier";
+        var curUrl = currentWebsiteUrl.substring(0, currentWebsiteUrl.indexOf('?'));
+        var dhP = qrauth.crypto.genP();
+        var dhG = qrauth.crypto.genG(dhP);
+        var dhSecret = qrauth.crypto.genSecret();
+        var dhKey = qrauth.crypto.evalKey(dhG, dhSecret, dhP);
+        var data = {
+            url: curUrl,
+            ts: 123123123123,
+            seq: "asddadasdasdas",
+            dhP: qrauth.crypto.bigint2str(dhP),
+            dhG: qrauth.crypto.bigint2str(dhG),
+            dhKey: qrauth.crypto.bigint2str(dhKey)
+        };
+        console.info("all good");
+        console.info("JSON: " + JSON.stringify(data));
+    </script>
+</head>
+<body>
+    hello there
+</body>
+</html>

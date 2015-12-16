@@ -29,6 +29,12 @@ $timestamp = $info[1];
 $username = $info[2];
 $password = $info[3];
 
+if (!QA_valid_id($id)) {
+    echo "ERR invalid ID: [$id]\n";
+    http_response_code(400);
+    exit(3);
+}
+
 $filepath = QA_filepath_by_id($id);
 $fp = fopen($filepath, "w");
 

@@ -57,10 +57,18 @@ class EditCredsViewController: UIViewController {
                 do {
                     try json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0))
                     
-                    if let json = json, seq = json["seq"] as! String?, url = json["url"] as! String?, ts = json["ts"] as! Int? {
-                        print("Parsed: seq=[\(seq)], url=[\(url)], ts=[\(ts)]")
+                    if let json = json,
+                        seq = json["seq"] as! String?,
+                        url = json["url"] as! String?,
+                        ts = json["ts"] as! Int?,
+                        dhP = json["dhP"] as! String?,
+                        dhG = json["dhG"] as! String?,
+                        dhKey = json["dhKey"] as! String?
+                    {
+                        let dhInfo = DhInfo(p: dhP, g: dhG, key: dhKey)
+                        print("Parsed: seq=[\(seq)], url=[\(url)], ts=[\(ts), dh=[\(dhInfo)]]")
                         if let vc = self {
-                            try vc.onSuccess(seq: seq, url: url, timestamp: ts)
+                            try vc.onSuccess(seq: seq, url: url, timestamp: ts, dh: dhInfo)
                         }
                     } else {
                         throw NSError(domain: "Unable to parse JSON", code: 1, userInfo: nil)
@@ -137,8 +145,8 @@ class EditCredsViewController: UIViewController {
     
     //
     // Handle QR parsing success
-    private func onSuccess(seq seq: String?, url: String?, timestamp ts: Int?) throws {
-        print("onSuccess: seq=[\(seq)], url=[\(url)], ts=[\(ts)]")
+    private func onSuccess(seq seq: String?, url: String?, timestamp ts: Int?, dh: DhInfo) throws {
+        print("onSuccess: seq=[\(seq)], url=[\(url)], ts=[\(ts)], \(dh)")
         guard let url = url, ts = ts, seq = seq else {
             throw NSError(domain: "Empty parameters on success", code: 2, userInfo: nil)
         }
@@ -150,7 +158,7 @@ class EditCredsViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             [weak self] in
             if let vc = self {
-                vc.scannedQrText.text = "id=\(id)\nurl=\(url)\nts=\(ts)"
+                vc.scannedQrText.text = "id=\(id)\nurl=\(url)\nts=\(ts)\nDiffie-Hellman: \(dh)"
             }
         }
         
@@ -246,3 +254,22 @@ class LoginInfo {
         self.password = password
     }
 }
+
+//
+// Diffie-Hellman information holder
+class DhInfo: CustomStringConvertible {
+    let p: String
+    let g: String
+    let key: String
+    
+    init(p: String, g: String, key: String) {
+        self.p = p;
+        self.g = g;
+        self.key = key;
+    }
+    
+    var description: String {
+        return "DH(p=\(p),g=\(g),key=\(key))"
+    }
+}
+

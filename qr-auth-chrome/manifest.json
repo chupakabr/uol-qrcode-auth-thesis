@@ -18,6 +18,7 @@
 //      "js/jquery/jquery.md5.js",
 //      "js/qr/qrcode.js",
 //      "js/crypto/BigInt.js",
+//      "js/crypto/qrvault-crypto.js",
 //      "src/bg/background.js"
 //    ],
     "page": "src/bg/background.html",

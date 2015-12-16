@@ -1,10 +1,25 @@
-qrauth = {};
+/**
+ * QrAuthVault
+ *
+ * Main implementation file (basically it is a mediator):
+ * - generate QR code
+ * - poll for credentials file
+ * - extract credentials
+ * - authenticate user
+ *
+ * 2015 (c) Valera Chevtaev
+ */
+
+if (typeof qrauth === "undefined") {
+    qrauth = {};
+}
 qrauth.retry = {};
 qrauth.retry.cur = 0;
 qrauth.retry.limit = 5; // TODO increase
 qrauth.retry.millis = 3000;
 qrauth.waiting = false;
 
+// generate random string by pattern
 qrauth.replacePattern = function(pattern) {
     var possibleC = "qwertyuiopasdfghjklzxcvbnm";
     var possibleV = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
@@ -24,21 +39,36 @@ qrauth.replacePattern = function(pattern) {
     return res.join("").toLowerCase();
 };
 
+// generate MD5 hash
 qrauth.md5 = function(str) {
     return $.md5(str);
 };
 
+// generate QR code when current web page URL is available via callback
 qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
     chrome.extension.sendMessage({"name": "page_action.open"}, function (response) {
         // Generate QR code
         var seq = qrauth.replacePattern("ccvvccvcvcvcccvv"); // 16 chars
         var now = Date.now();
         var id = qrauth.md5(seq + now);
-        var curUrl = currentWebsiteUrl; //"https://gmail.com"; // TODO Get real website URL
+        var curUrl = currentWebsiteUrl.substring(0, currentWebsiteUrl.indexOf('?'));
+        var dhP = qrauth.crypto.genP();
+        var dhG = qrauth.crypto.genG(dhP);
+        var dhSecret = qrauth.crypto.genSecret();
+        var dhKey = qrauth.crypto.evalKey(dhG, dhSecret, dhP);
+        var data = {
+            url: curUrl,
+            ts: now,
+            seq: seq,
+            dhP: qrauth.crypto.bigint2str(dhP),
+            dhG: qrauth.crypto.bigint2str(dhG),
+            dhKey: qrauth.crypto.bigint2str(dhKey)
+        };
         new QRCode(document.getElementById("qrcode"), {
-            text: '{"url":"' + curUrl + '", "ts":' + now + ',"seq":"' + seq + '"}',
-            width: 128,
-            height: 128,
+            //text: '{"url":"' + curUrl + '", "ts":' + now + ',"seq":"' + seq + '"}',
+            text: JSON.stringify(data),
+            width: 256,
+            height: 256,
             colorDark: "#000000",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
@@ -57,7 +87,7 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
         qrauth.retry.cur = qrauth.retry.limit;
         qrauth.waiting = true;
         (function authFilePolling() {
-            //id = "asdasdasd"; // TODO debug only, remove this line later
+            //id = "31a7f952a00e72ed86ace4f5619dcf08"; // TODO debug only, remove this line later
             $.ajax({
                 url: "https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=" + id,
                 cache: false,
@@ -116,12 +146,14 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
     });
 };
 
+// request current web page URL
 chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
   function(tabs){
       qrauth.tabUrlAvailable(tabs[0].url);
   }
 );
 
+// extension events listener
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
 

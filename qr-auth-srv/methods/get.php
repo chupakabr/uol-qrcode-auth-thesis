@@ -12,8 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] != "GET") {
 
 // Normalize file name: only characters plus a dot
 $id = QA_normalize_id($_GET["id"]);
-$filepath = QA_filepath_by_id($id);
+if (!QA_valid_id($id)) {
+    echo "ERR invalid ID: [$id]\n";
+    http_response_code(400);
+    exit(2);
+}
 
+$filepath = QA_filepath_by_id($id);
 if (file_exists($filepath)) {
     $input = fopen($filepath, "r");
 

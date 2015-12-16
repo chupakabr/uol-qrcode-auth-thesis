@@ -1,3 +1,11 @@
+/**
+ * QrAuthVault
+ *
+ * Extension code to be executed on page load plus web site authentication scripts
+ *
+ * 2015 (c) Valera Chevtaev
+ */
+
 chrome.extension.sendMessage({"name": "ready"}, function(response) {
 	var readyStateCheckInterval = setInterval(function() {
 	if (document.readyState === "complete") {
@@ -12,9 +20,12 @@ chrome.extension.sendMessage({"name": "ready"}, function(response) {
 });
 
 
-qrauth = {};
+if (typeof qrauth === "undefined") {
+	qrauth = {};
+}
 qrauth.auth = {};
 
+// automated authentication to Google Account
 // TODO move this kind of authorization steps to a server to be delivered on auth request
 // TODO replace hardcoded delay with JS wait for an input field to appear
 qrauth.auth.gmail = function(usr, pwd) {
@@ -29,7 +40,7 @@ qrauth.auth.gmail = function(usr, pwd) {
 	}, 2000);
 };
 
-console.info("kukunya!");
+// extension events listener
 chrome.extension.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		console.info("hello from the other side");

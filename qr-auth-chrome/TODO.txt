@@ -14,7 +14,7 @@ https://accounts.google.com/AddSession?sacu=1#identifier
 
 =HTTP requests
 
-curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=asdasdasd
+curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=31a7f952a00e72ed86ace4f5619dcf08
 
 curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=nonExistingId
 
