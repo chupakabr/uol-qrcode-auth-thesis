@@ -69,7 +69,7 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
             correctLevel: QRCode.CorrectLevel.H
         });
 
-        console.info("requested with seq=" + seq + ", ts=" + now + ", id=" + id);
+        //console.info("requested with seq=" + seq + ", ts=" + now + ", id=" + id);
 
         // Only if not running yet
         if (qrauth.waiting) {
@@ -90,37 +90,44 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
                 success: function (data, statusText, jqXHR) {
                     qrauth.waiting = false;
 
-                    console.info("response: " + statusText);
-                    console.info("success - data: " + data);
+                    //console.info("response: " + statusText);
+                    //console.info("success - data: " + data);
                     if (data) {
                         var info = data.split(':', 3);
                         if (info && info.length == 3) {
                             var ts = info[0];
-                            var usr = info[1];
-                            var pwd = info[2];
-                            console.info("ts=" + ts + ", user=" + usr + ", pwd=" + pwd);
+                            var clientPubKey = info[1];
+                            var cipher = info[2];
 
-                            // authorize on gmail.com
-                            chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-                                chrome.tabs.sendMessage(
-                                  tabs[0].id,
-                                  {
-                                      "name": "qrauth.do",
-                                      "usr": usr,
-                                      "pwd": pwd,
-                                  },
-                                  function (response) {
-                                      chrome.extension.sendMessage({"name": "qrauth.fail", msg: ""});
-                                  });
-                            });
+                            // decrypt credentials got from the client
+                            var dhSharedKey = qrauth.crypto.evalPrivKey(qrauth.crypto.str2bigint(clientPubKey), dhSecret, dhP);
+                            var decrypted = qrauth.crypto.decrypt(cipher, qrauth.crypto.bigint2str(dhSharedKey));
 
-                            return;
+                            // extract credentials
+                            var creds = decrypted.split(':', 2);
+                            if (creds && creds.length == 2) {
+                                // authorize on gmail.com
+                                chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+                                    chrome.tabs.sendMessage(
+                                      tabs[0].id,
+                                      {
+                                          "name": "qrauth.do",
+                                          "usr": creds[0],
+                                          "pwd": creds[1],
+                                      },
+                                      function (response) {
+                                          chrome.extension.sendMessage({"name": "qrauth.fail", msg: ""});
+                                      });
+                                });
+
+                                return;
+                            }
                         }
                     }
 
                     // Something went wrong?
                     console.info("invalid data from the server");
-                    chrome.extension.sendMessage({"name": "qrauth.fail", "msg": "Server error"});
+                    chrome.extension.sendMessage({"name": "qrauth.fail", "msg": "Server error"}); // TOD Handle this error
                 },
                 error: function (data) {
                     if (qrauth.retry.cur-- > 0) {
@@ -131,7 +138,7 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
                         chrome.extension.sendMessage({
                             "name": "qrauth.fail",
                             "msg": "Please check your QrVault app for valid credentials"
-                        });
+                        }); // TODO Handle this error
                     }
                 },
             }).done(function (data, statusText, jqXHR) {
@@ -143,9 +150,9 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
 
 // request current web page URL
 chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-  function(tabs){
-      qrauth.tabUrlAvailable(tabs[0].url);
-  }
+    function(tabs){
+        qrauth.tabUrlAvailable(tabs[0].url);
+    }
 );
 
 // extension events listener

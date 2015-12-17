@@ -22,6 +22,7 @@ qrauth.crypto.context.dhP = undefined;
 qrauth.crypto.context.dhG = undefined;
 qrauth.crypto.context.dhSecret = undefined;
 qrauth.crypto.context.dhPubKey = undefined;
+qrauth.crypto.context.dhPubKeyStr = undefined;
 qrauth.crypto.context.dhPrivKey = undefined;
 qrauth.crypto.context.dhPrivKeyStr = undefined;
 
@@ -72,6 +73,14 @@ qrauth.crypto.evalPubKey = function(g, secret, p) {
     return key;
 };
 
+// evaluate public key
+// resulting value is converted from bigint to string
+qrauth.crypto.evalPubKeyFromStr = function(g, secret, p) {
+    var key = qrauth.crypto.bigint2str(qrauth.crypto.evalPubKey(qrauth.crypto.str2bigint(g), qrauth.crypto.str2bigint(secret), qrauth.crypto.str2bigint(p)));
+    qrauth.crypto.context.dhPubKeyStr = key;
+    return key;
+};
+
 // private key = A^b mod p or B^a mod p
 qrauth.crypto.evalPrivKey = function(A, b, p) {
     var key = powMod(A, b, p);
@@ -96,3 +105,13 @@ qrauth.crypto.bigint2str = function(bigintNum) {
 qrauth.crypto.str2bigint = function(bigintStr) {
     return str2bigInt(bigintStr, 10, 0);
 };
+
+// encrypt a message
+qrauth.crypto.encrypt = function(text, sharedKey) {
+    return CryptoJS.AES.encrypt(text, sharedKey).toString();
+}
+
+// decrypt a message
+qrauth.crypto.decrypt = function(cipher, sharedKey) {
+    return CryptoJS.AES.decrypt(cipher, sharedKey).toString(CryptoJS.enc.Utf8);
+}

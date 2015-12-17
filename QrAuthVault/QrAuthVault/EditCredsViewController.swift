@@ -48,14 +48,14 @@ class EditCredsViewController: UIViewController {
         if jsContext == nil {
             do {
                 jsContext = JSContext()
-                try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
-                try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("core"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("enc-base64"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("md5"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("evpkdf"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("cipher-core"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("aes"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
                 
                 print("JS loaded")
             } catch let err as NSError {
@@ -222,15 +222,15 @@ class EditCredsViewController: UIViewController {
         let secret = genSecretKey()
         let publicB = evalPublicKey(g: dh.g, secret: secret, p: dh.p)
         let sharedKey = evalSharedPrivateKey(publicA: dh.pubKey, secret: secret, p: dh.p)
+        let cipher = encryptMessage("\(loginInfo.username):\(loginInfo.password)", sharedKey: sharedKey)
         print("secret=\(secret)")
         print("publicB=\(publicB)")
         print("sharedKey=\(sharedKey)")
+        print("cipher=\(cipher)")
         
-        // TODO Encrypt data with shared key
-        let dataStr = "\(id):\(ts):\(loginInfo.username):\(loginInfo.password)"
+        // Encrypt data with shared key
+        let dataStr = "\(id):\(ts):\(publicB):\(cipher)"
         print("Upload credentials: \(dataStr)")
-        
-        return // TODO REMOVE THIS LINE
         
         if let data = dataStr.dataUsingEncoding(NSUTF8StringEncoding) {
             Alamofire.upload(.PUT,
@@ -300,13 +300,25 @@ class EditCredsViewController: UIViewController {
     }
     
     private func evalPublicKey(g g: String, secret: String, p: String) -> String {
-        let publicKey: JSValue = jsContext.evaluateScript("qrauth.crypto.bigint2str(qrauth.crypto.evalPubKey('\(g)','\(secret)','\(p)'))")
+        let jsFuncEvalPubKey = getJsCryptoFunc("evalPubKeyFromStr")
+        let publicKey: JSValue = jsFuncEvalPubKey.callWithArguments([g, secret, p])
         return publicKey.toString()
     }
     
     private func evalSharedPrivateKey(publicA publicA: String, secret: String, p: String) -> String {
-        let privateKey: JSValue = jsContext.evaluateScript("qrauth.crypto.evalPrivKeyFromStr('\(publicA)','\(secret)','\(p)')")
+        let jsFunc = getJsCryptoFunc("evalPrivKeyFromStr")
+        let privateKey: JSValue = jsFunc.callWithArguments([publicA, secret, p])
         return privateKey.toString()
+    }
+
+    private func encryptMessage(text: String, sharedKey: String) -> String {
+        let jsFunc = getJsCryptoFunc("encrypt")
+        let cipher: JSValue = jsFunc.callWithArguments([text, sharedKey])
+        return cipher.toString()
+    }
+    
+    private func getJsCryptoFunc(funcName: String) -> JSValue! {
+        return jsContext.objectForKeyedSubscript("qrauth").objectForKeyedSubscript("crypto").objectForKeyedSubscript(funcName)
     }
 }
 
