@@ -14,6 +14,7 @@ qrauth.crypto.bits = 128;
 qrauth.crypto.e = str2bigInt("65537", 10, 0);
 qrauth.crypto.maxKey = 1073741824; // 2^30
 qrauth.crypto.one = one; //int2bigInt(1, 1, 1);
+qrauth.crypto.testStr = "asdasdasd";
 
 // required to store latest value in the current context
 qrauth.crypto.context = {};
@@ -75,7 +76,7 @@ qrauth.crypto.evalPrivKey = function(A, b, p) {
 // generate private key
 // resulting value is converted from bigint to string
 qrauth.crypto.evalPrivKeyFromStr = function(A, b, p) {
-    var key = bigInt2str(qrauth.crypto.evalPrivKey(str2bigInt(A,10,0), str2bigInt(b,10,0), str2bigInt(p,10,0)));
+    var key = qrauth.crypto.bigint2str(qrauth.crypto.evalPrivKey(qrauth.crypto.str2bigint(A), qrauth.crypto.str2bigint(b), qrauth.crypto.str2bigint(p)));
     qrauth.crypto.context.dhPrivKeyStr = key;
     return key;
 };

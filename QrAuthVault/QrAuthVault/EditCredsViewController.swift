@@ -20,7 +20,7 @@ class EditCredsViewController: UIViewController {
     private let defaultLoginUrl = "https://accounts.google.com/ServiceLogin"
     private let defaultService = "google"
     
-    private var jsContext: JSContext!
+    private var jsContext: JSContext! = nil
     
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
@@ -45,18 +45,20 @@ class EditCredsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // Load JS libraries into JS context
-        do {
-            jsContext = JSContext()
-            try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
-            try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
-        } catch let err as NSError {
-            // Go back to main/auth screen
-            print("ERROR Cannot load JS scripts: \(err)")
-            self.dismissViewControllerAnimated(animated, completion: nil)
-            return
+        if jsContext == nil {
+            do {
+                jsContext = JSContext()
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
+                
+                print("JS loaded")
+            } catch let err as NSError {
+                // Go back to main/auth screen
+                print("ERROR Cannot load JS scripts: \(err)")
+                self.dismissViewControllerAnimated(animated, completion: nil)
+                return
+            }
         }
-        
-        print("JS loaded")
     }
     
     // MARK: - UI actions
@@ -210,8 +212,19 @@ class EditCredsViewController: UIViewController {
             throw NSError(domain: "Login information, id or timestamp not found", code: 1, userInfo: nil)
         }
         
+        // Generate local secret, public and shared keys
+        let secret = genSecretKey()
+        let publicB = evalPublicKey(g: dh.g, secret: secret, p: dh.p)
+        let sharedKey = evalSharedPrivateKey(publicA: dh.pubKey, secret: secret, p: dh.p)
+        print("secret=\(secret)")
+        print("publicB=\(publicB)")
+        print("sharedKey=\(sharedKey)")
+        
+        // TODO Encrypt data with shared key
         let dataStr = "\(id):\(ts):\(loginInfo.username):\(loginInfo.password)"
         print("Upload credentials: \(dataStr)")
+        
+        return // TODO REMOVE THIS LINE
         
         if let data = dataStr.dataUsingEncoding(NSUTF8StringEncoding) {
             Alamofire.upload(.PUT,
@@ -275,13 +288,18 @@ class EditCredsViewController: UIViewController {
         return file
     }
     
-    private func evalSecretKey() -> String {
-        let secret: JSValue = jsContext.evaluateScript("qrauth.crypto.bigint2str(genSecret())")
+    private func genSecretKey() -> String {
+        let secret: JSValue = jsContext.evaluateScript("qrauth.crypto.bigint2str(qrauth.crypto.genSecret())")
         return secret.toString()
     }
     
-    private func evalPrivateKey(publicA: String, secret: String, p: String) -> String {
-        let privateKey: JSValue = jsContext.evaluateScript("evalPrivKeyFromStr('\(publicA)','\(secret)','\(p)')")
+    private func evalPublicKey(g g: String, secret: String, p: String) -> String {
+        let publicKey: JSValue = jsContext.evaluateScript("qrauth.crypto.bigint2str(qrauth.crypto.evalPubKey('\(g)','\(secret)','\(p)'))")
+        return publicKey.toString()
+    }
+    
+    private func evalSharedPrivateKey(publicA publicA: String, secret: String, p: String) -> String {
+        let privateKey: JSValue = jsContext.evaluateScript("qrauth.crypto.evalPrivKeyFromStr('\(publicA)','\(secret)','\(p)')")
         return privateKey.toString()
     }
 }
@@ -305,16 +323,16 @@ class LoginInfo {
 class DhInfo: CustomStringConvertible {
     let p: String
     let g: String
-    let key: String
+    let pubKey: String
     
     init(p: String, g: String, key: String) {
         self.p = p;
         self.g = g;
-        self.key = key;
+        self.pubKey = key;
     }
     
     var description: String {
-        return "DH(p=\(p),g=\(g),key=\(key))"
+        return "DH(p=\(p),g=\(g),pubKey=\(pubKey))"
     }
 }
 

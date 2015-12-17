@@ -19,17 +19,24 @@
         var dhP = qrauth.crypto.genP();
         var dhG = qrauth.crypto.genG(dhP);
         var dhSecret = qrauth.crypto.genSecret();
-        var dhKey = qrauth.crypto.evalKey(dhG, dhSecret, dhP);
+        var dhKey = qrauth.crypto.evalPubKey(dhG, dhSecret, dhP);
         var data = {
             url: curUrl,
             ts: 123123123123,
             seq: "asddadasdasdas",
             dhP: qrauth.crypto.bigint2str(dhP),
             dhG: qrauth.crypto.bigint2str(dhG),
-            dhKey: qrauth.crypto.bigint2str(dhKey)
+            dhKey: qrauth.crypto.bigint2str(dhKey),
+            secret: qrauth.crypto.bigint2str(dhSecret)
         };
+
         console.info("all good");
         console.info("JSON: " + JSON.stringify(data));
+        console.info("dhKey=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhKey)));
+        console.info("secret=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhSecret)));
+        console.info("dhP=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhP)));
+        console.info("private: " + qrauth.crypto.evalPrivKeyFromStr(qrauth.crypto.bigint2str(dhKey), qrauth.crypto.bigint2str(dhSecret), qrauth.crypto.bigint2str(dhP)));
+        console.info("private: " + qrauth.crypto.evalPrivKey(dhKey, dhSecret, dhP));
     </script>
 </head>
 <body>

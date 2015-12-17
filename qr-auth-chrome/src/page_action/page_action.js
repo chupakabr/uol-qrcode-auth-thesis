@@ -55,7 +55,7 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
         var dhP = qrauth.crypto.genP();
         var dhG = qrauth.crypto.genG(dhP);
         var dhSecret = qrauth.crypto.genSecret();
-        var dhKey = qrauth.crypto.evalKey(dhG, dhSecret, dhP);
+        var dhKey = qrauth.crypto.evalPubKey(dhG, dhSecret, dhP);
         var data = {
             url: curUrl,
             ts: now,
