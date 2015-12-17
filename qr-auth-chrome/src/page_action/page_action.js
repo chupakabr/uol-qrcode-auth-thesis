@@ -39,11 +39,6 @@ qrauth.replacePattern = function(pattern) {
     return res.join("").toLowerCase();
 };
 
-// generate MD5 hash
-qrauth.md5 = function(str) {
-    return $.md5(str);
-};
-
 // generate QR code when current web page URL is available via callback
 qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
     chrome.extension.sendMessage({"name": "page_action.open"}, function (response) {

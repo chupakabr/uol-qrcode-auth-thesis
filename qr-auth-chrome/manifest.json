@@ -13,14 +13,6 @@
   "options_page": "src/options_custom/index.html",
   /* is being called on tab open, i.e. match */
   "background": {
-//    "scripts": [
-//      "js/jquery/jquery.min.js",
-//      "js/jquery/jquery.md5.js",
-//      "js/qr/qrcode.js",
-//      "js/crypto/BigInt.js",
-//      "js/crypto/qrvault-crypto.js",
-//      "src/bg/background.js"
-//    ],
     "page": "src/bg/background.html",
     "persistent": false
   },

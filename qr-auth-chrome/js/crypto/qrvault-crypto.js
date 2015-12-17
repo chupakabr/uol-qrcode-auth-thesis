@@ -25,6 +25,12 @@ qrauth.crypto.context.dhPubKey = undefined;
 qrauth.crypto.context.dhPrivKey = undefined;
 qrauth.crypto.context.dhPrivKeyStr = undefined;
 
+// generate MD5 hash
+qrauth.md5 = function(str) {
+    return CryptoJS.MD5(str).toString();
+};
+
+// generate random prime number
 qrauth.crypto.genRandomPrime = function(notCongruentToNum) {
     var primeNum;
     while (1) {
