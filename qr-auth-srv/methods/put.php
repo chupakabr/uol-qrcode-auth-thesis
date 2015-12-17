@@ -26,8 +26,8 @@ if ($cnt != 4) {
 // Normalize file name: only characters plus a dot.
 $id = QA_normalize_id($info[0]);
 $timestamp = $info[1];
-$username = $info[2];
-$password = $info[3];
+$clientPubKey = $info[2];
+$credentials = $info[3];
 
 if (!QA_valid_id($id)) {
     echo "ERR invalid ID: [$id]\n";
@@ -38,9 +38,7 @@ if (!QA_valid_id($id)) {
 $filepath = QA_filepath_by_id($id);
 $fp = fopen($filepath, "w");
 
-fwrite($fp, "$timestamp:$username:$password", QA_MAX_FILE_SIZE);
+fwrite($fp, "$timestamp:$clientPubKey:$credentials", QA_MAX_FILE_SIZE);
 fclose($fp);
-
-//echo "written [$username:$password] to $filepath\n";
 
 http_response_code(200);
