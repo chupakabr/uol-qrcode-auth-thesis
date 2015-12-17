@@ -50,6 +50,12 @@ class EditCredsViewController: UIViewController {
                 jsContext = JSContext()
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
                 try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("core"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("enc-base64"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("md5"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("evpkdf"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("cipher-core"), encoding: NSUTF8StringEncoding))
+                try jsContext.evaluateScript(String(contentsOfURL: jsFile("aes"), encoding: NSUTF8StringEncoding))
                 
                 print("JS loaded")
             } catch let err as NSError {

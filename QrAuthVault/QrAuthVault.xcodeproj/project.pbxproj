@@ -289,7 +289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cp ../qr-auth-chrome/js/crypto/* QrAuthVault/js/";
+			shellScript = "cp ../qr-auth-chrome/js/crypto/* QrAuthVault/js/\ncp ../qr-auth-chrome/js/crypto-js/* QrAuthVault/js/";
 		};
 		69A7B63A4C344AF830D0629C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

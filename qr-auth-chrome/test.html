@@ -2,6 +2,12 @@
 <head>
     <script type="text/javascript" src="js/crypto/BigInt.js"></script>
     <script type="text/javascript" src="js/crypto/qrvault-crypto.js"></script>
+    <script type="text/javascript" src="js/crypto-js/core.js"></script>
+    <script type="text/javascript" src="js/crypto-js/enc-base64.js"></script>
+    <script type="text/javascript" src="js/crypto-js/md5.js"></script>
+    <script type="text/javascript" src="js/crypto-js/evpkdf.js"></script>
+    <script type="text/javascript" src="js/crypto-js/cipher-core.js"></script>
+    <script type="text/javascript" src="js/crypto-js/aes.js"></script>
     <script language="JavaScript">
         if (typeof asdasd === "undefined") {
             asdasd = {};
@@ -19,7 +25,9 @@
         var dhP = qrauth.crypto.genP();
         var dhG = qrauth.crypto.genG(dhP);
         var dhSecret = qrauth.crypto.genSecret();
+        var dhSecret2 = qrauth.crypto.genSecret();
         var dhKey = qrauth.crypto.evalPubKey(dhG, dhSecret, dhP);
+        var dhKey2 = qrauth.crypto.evalPubKey(dhG, dhSecret2, dhP);
         var data = {
             url: curUrl,
             ts: 123123123123,
@@ -32,11 +40,31 @@
 
         console.info("all good");
         console.info("JSON: " + JSON.stringify(data));
-        console.info("dhKey=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhKey)));
-        console.info("secret=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhSecret)));
+        console.info("dhKey1=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhKey)));
+        console.info("dhKey2=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhKey2)));
+        console.info("secret1=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhSecret)));
+        console.info("secret2=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhSecret2)));
         console.info("dhP=" + qrauth.crypto.str2bigint(qrauth.crypto.bigint2str(dhP)));
-        console.info("private: " + qrauth.crypto.evalPrivKeyFromStr(qrauth.crypto.bigint2str(dhKey), qrauth.crypto.bigint2str(dhSecret), qrauth.crypto.bigint2str(dhP)));
-        console.info("private: " + qrauth.crypto.evalPrivKey(dhKey, dhSecret, dhP));
+        console.info("private1: " + qrauth.crypto.evalPrivKeyFromStr(qrauth.crypto.bigint2str(dhKey), qrauth.crypto.bigint2str(dhSecret2), qrauth.crypto.bigint2str(dhP)));
+        console.info("private1: " + qrauth.crypto.evalPrivKey(dhKey, dhSecret2, dhP));
+        console.info("private2: " + qrauth.crypto.evalPrivKeyFromStr(qrauth.crypto.bigint2str(dhKey2), qrauth.crypto.bigint2str(dhSecret), qrauth.crypto.bigint2str(dhP)));
+        console.info("private2: " + qrauth.crypto.evalPrivKey(dhKey2, dhSecret, dhP));
+
+        // check K = A^b mod p = B^a mod p
+        var privKey = qrauth.crypto.evalPrivKey(dhKey, dhSecret2, dhP);
+        var privKeyStr = qrauth.crypto.bigint2str(privKey);
+        var privKey2 = qrauth.crypto.evalPrivKey(dhKey2, dhSecret, dhP);
+        var privKeyStr2 = qrauth.crypto.bigint2str(privKey2);
+        console.info("K1 = " + privKeyStr);
+        console.info("K2 = " + privKeyStr2);
+
+        // test crypto using shared secret key
+        var message = 'hello my boy';
+        var ciphertext = CryptoJS.AES.encrypt(message, privKeyStr);
+        console.info("Encrypting text: [" + message + "]");
+        console.info("Cipher: [" + ciphertext + "]");
+        var decryptedtext = CryptoJS.AES.decrypt(ciphertext.toString(), privKeyStr);
+        console.info("Decrypted text: [" + decryptedtext.toString(CryptoJS.enc.Utf8) + "]");
     </script>
 </head>
 <body>
