@@ -13,28 +13,50 @@ import AVFoundation
 import Alamofire
 import CryptoSwift
 import CoreData
+import JavaScriptCore
 
 class EditCredsViewController: UIViewController {
 
     private let defaultLoginUrl = "https://accounts.google.com/ServiceLogin"
     private let defaultService = "google"
     
+    private var jsContext: JSContext!
+    
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scannedQrText: UITextView!
     
-    //AVMetadataObjectTypeQRCode
     lazy var reader = QRCodeReaderViewController(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO
+        // Load credentials from data store
         let savedModel = loadEntry(defaultService)
         if let savedModel = savedModel {
             self.usernameTextField.text = savedModel.usr
             self.passwordTextField.text = savedModel.pwd
         }
+        
+        print("Unlocked!")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Load JS libraries into JS context
+        do {
+            jsContext = JSContext()
+            try jsContext.evaluateScript(String(contentsOfURL: jsFile("BigInt"), encoding: NSUTF8StringEncoding))
+            try jsContext.evaluateScript(String(contentsOfURL: jsFile("qrvault-crypto"), encoding: NSUTF8StringEncoding))
+        } catch let err as NSError {
+            // Go back to main/auth screen
+            print("ERROR Cannot load JS scripts: \(err)")
+            self.dismissViewControllerAnimated(animated, completion: nil)
+            return
+        }
+        
+        print("JS loaded")
     }
     
     // MARK: - UI actions
@@ -164,7 +186,7 @@ class EditCredsViewController: UIViewController {
         
         // Success: upload credentials file
         do {
-            try uploadCredentials(id: id, loginInfo: loadCredentials(url), timestamp: ts)
+            try uploadCredentials(id: id, loginInfo: loadCredentials(url), timestamp: ts, dh: dh)
         } catch {
             // TODO Handle error
             print("ERROR Can't upload credentials: \(error)")
@@ -181,7 +203,9 @@ class EditCredsViewController: UIViewController {
     //
     // Upload user credentials to file sharing service
     // TODO Use SSL!!! (HTTPS)
-    private func uploadCredentials(id id: String?, loginInfo: LoginInfo?, timestamp ts: Int?, lifetimeSec ttlSec: Int = 120) throws {
+    private func uploadCredentials(id id: String?, loginInfo: LoginInfo?,
+        timestamp ts: Int?, dh: DhInfo, lifetimeSec ttlSec: Int = 120) throws
+    {
         guard let loginInfo = loginInfo, id = id, ts = ts else {
             throw NSError(domain: "Login information, id or timestamp not found", code: 1, userInfo: nil)
         }
@@ -238,6 +262,27 @@ class EditCredsViewController: UIViewController {
         }
         
         return nil
+    }
+    
+
+    //
+    // MARK: - JS manipulation and evaluation
+
+    private func jsFile(filenameWithoutExt: String) throws -> NSURL {
+        guard let file = NSBundle.mainBundle().URLForResource(filenameWithoutExt, withExtension: "js", subdirectory: "js") else {
+            throw NSError(domain: "JsFileLoad", code: 1, userInfo: ["file": filenameWithoutExt])
+        }
+        return file
+    }
+    
+    private func evalSecretKey() -> String {
+        let secret: JSValue = jsContext.evaluateScript("qrauth.crypto.bigint2str(genSecret())")
+        return secret.toString()
+    }
+    
+    private func evalPrivateKey(publicA: String, secret: String, p: String) -> String {
+        let privateKey: JSValue = jsContext.evaluateScript("evalPrivKeyFromStr('\(publicA)','\(secret)','\(p)')")
+        return privateKey.toString()
     }
 }
 

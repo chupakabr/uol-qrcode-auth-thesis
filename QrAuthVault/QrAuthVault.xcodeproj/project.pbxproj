@@ -10,6 +10,7 @@
 		3E02208F1C20556E003391EB /* Credential+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E02208D1C20556E003391EB /* Credential+CoreDataProperties.swift */; };
 		3E0220901C20556E003391EB /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E02208E1C20556E003391EB /* Credential.swift */; };
 		3E0BE5121C174A5D0062F1D1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0BE5111C174A5D0062F1D1 /* AVFoundation.framework */; };
+		3E44A93D1C22362400964797 /* js in Resources */ = {isa = PBXBuildFile; fileRef = 3E44A93C1C22362400964797 /* js */; };
 		3E784B0A1C10A2620027C160 /* CleanroomASL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; };
 		3E784B0B1C10A2620027C160 /* CleanroomASL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B091C10A2620027C160 /* CleanroomASL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E784B0D1C10A2620027C160 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */; };
@@ -55,6 +56,7 @@
 		3E02208D1C20556E003391EB /* Credential+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Credential+CoreDataProperties.swift"; path = "model/Credential+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3E02208E1C20556E003391EB /* Credential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Credential.swift; path = model/Credential.swift; sourceTree = "<group>"; };
 		3E0BE5111C174A5D0062F1D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E44A93C1C22362400964797 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
 		3E784B091C10A2620027C160 /* CleanroomASL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomASL.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomASL.framework"; sourceTree = "<absolute>"; };
 		3E784B0C1C10A2620027C160 /* CleanroomLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CleanroomLogger.framework; path = "/Users/myltik/Library/Developer/Xcode/DerivedData/QrAuthVault-fknlglnmflidhxgvencavudfebzb/Build/Products/Debug-iphoneos/CleanroomLogger.framework"; sourceTree = "<absolute>"; };
 		3E784B101C10AC010027C160 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,7 @@
 		3EF2FD5B1BA4721B00301CD9 /* QrAuthVault */ = {
 			isa = PBXGroup;
 			children = (
+				3E44A93C1C22362400964797 /* js */,
 				3E0220911C205584003391EB /* model */,
 				3EF2FD5C1BA4721B00301CD9 /* AppDelegate.swift */,
 				3E784B141C10B5400027C160 /* EditCredsViewController.swift */,
@@ -183,6 +186,7 @@
 				90E73419F7E9893A2F904D96 /* Check Pods Manifest.lock */,
 				3EF2FD551BA4721B00301CD9 /* Sources */,
 				3EF2FD561BA4721B00301CD9 /* Frameworks */,
+				3E44A93E1C2236F300964797 /* ShellScript */,
 				3EF2FD571BA4721B00301CD9 /* Resources */,
 				3E784B0F1C10A2630027C160 /* Embed Frameworks */,
 				69A7B63A4C344AF830D0629C /* Embed Pods Frameworks */,
@@ -260,6 +264,7 @@
 				3EF2FD6A1BA4721B00301CD9 /* LaunchScreen.storyboard in Resources */,
 				3EF2FD671BA4721B00301CD9 /* Assets.xcassets in Resources */,
 				3EF2FD621BA4721B00301CD9 /* Main.storyboard in Resources */,
+				3E44A93D1C22362400964797 /* js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +278,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3E44A93E1C2236F300964797 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cp ../qr-auth-chrome/js/crypto/* QrAuthVault/js/";
+		};
 		69A7B63A4C344AF830D0629C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
