@@ -10,7 +10,6 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "options_page": "src/options_custom/index.html",
   /* is being called on tab open, i.e. match */
   "background": {
     "page": "src/bg/background.html",
