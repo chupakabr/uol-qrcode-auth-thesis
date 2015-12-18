@@ -2,7 +2,7 @@
 
 define(QA_UPLOAD_PATH, "/mnt/qrvault");
 define(QA_FILE_EXT, ".txt");
-define(QA_MAX_FILE_SIZE, 1024);
+define(QA_MAX_FILE_SIZE, 512);
 define(QA_ID_LEN, 16);
 
 function QA_gen_fileid() {

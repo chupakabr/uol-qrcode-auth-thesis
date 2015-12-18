@@ -19,15 +19,18 @@ if (!QA_valid_id($id)) {
 }
 
 $filepath = QA_filepath_by_id($id);
-if (file_exists($filepath)) {
-    $input = fopen($filepath, "r");
+if (@file_exists($filepath)) {
+    $input = @fopen($filepath, "r");
 
     // Read the data 1 KB at a time and write to the file
-    while ($data = fread($input, QA_MAX_FILE_SIZE)) {
+    while ($data = @fread($input, QA_MAX_FILE_SIZE)) {
         echo $data;
     }
-    fclose($input);
+    @fclose($input);
     echo "\n";
+
+    // Delete the file
+    @unlink($filepath);
 
     http_response_code(200);
 } else {
