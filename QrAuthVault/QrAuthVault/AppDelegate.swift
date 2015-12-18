@@ -66,7 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("QrAuthVault.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType,
+                configuration: nil, URL: url,
+                options: [NSPersistentStoreFileProtectionKey: NSFileProtectionComplete])
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
