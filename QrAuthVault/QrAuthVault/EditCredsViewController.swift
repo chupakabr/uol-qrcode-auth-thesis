@@ -17,7 +17,6 @@ import JavaScriptCore
 
 class EditCredsViewController: UIViewController {
 
-    // TODO Use SSL!!! (HTTPS)
     private let fileShareUrl = "https://chupakabr.ru/extra-test-qr-api/methods/put.php"
     private let defaultLoginUrl = "https://accounts.google.com/AddSession"
     private let defaultService = "google"
@@ -72,7 +71,7 @@ class EditCredsViewController: UIViewController {
     // MARK: - UI actions
     
     @IBAction func scan() {
-        print("++ TODO scan QR")
+        print("++ scan QR")
         
         // Or by using the closure pattern
         reader.completionBlock = { [weak self] (result: String?) in
@@ -224,10 +223,10 @@ class EditCredsViewController: UIViewController {
         let publicB = evalPublicKey(g: dh.g, secret: secret, p: dh.p)
         let sharedKey = evalSharedPrivateKey(publicA: dh.pubKey, secret: secret, p: dh.p)
         let cipher = encryptMessage("\(loginInfo.username):\(loginInfo.password)", sharedKey: sharedKey)
-        print("secret=\(secret)")
-        print("publicB=\(publicB)")
-        print("sharedKey=\(sharedKey)")
-        print("cipher=\(cipher)")
+        //print("secret=\(secret)")
+        //print("publicB=\(publicB)")
+        //print("sharedKey=\(sharedKey)")
+        //print("cipher=\(cipher)")
         
         // Encrypt data with shared key
         let dataStr = "\(id):\(ts):\(publicB):\(cipher)"
