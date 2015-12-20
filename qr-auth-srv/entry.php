@@ -3,7 +3,7 @@
 define(QA_UPLOAD_PATH, "/mnt/qrvault");
 define(QA_FILE_EXT, ".txt");
 define(QA_MAX_FILE_SIZE, 512);
-define(QA_ID_LEN, 16);
+define(QA_ID_LEN, 32);
 
 function QA_gen_fileid() {
     $randomFilename = "" . microtime(true) . "_" . QA_generateRandomString();
@@ -32,7 +32,7 @@ function QA_normalize_id($id) {
 }
 
 function QA_valid_id($id) {
-    if (strlen($id) < QA_ID_LEN) {
+    if (strlen($id) != QA_ID_LEN) {
         return false;
     }
     // TODO double preg_match check

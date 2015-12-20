@@ -41,6 +41,11 @@ qrauth.replacePattern = function(pattern) {
 
 // generate QR code when current web page URL is available via callback
 qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
+    // Only if not running yet
+    if (qrauth.waiting) {
+        return;
+    }
+
     chrome.extension.sendMessage({"name": "page_action.open"}, function (response) {
         // Generate QR code
         var seq = qrauth.replacePattern("ccvvccvcvcvcccvv"); // 16 chars
@@ -71,18 +76,12 @@ qrauth.tabUrlAvailable = function(currentWebsiteUrl) {
 
         //console.info("requested with seq=" + seq + ", ts=" + now + ", id=" + id);
 
-        // Only if not running yet
-        if (qrauth.waiting) {
-            return;
-        }
-
         $("#status").text("");
 
         // Poll for http://qrauth.chupakabr.ru/methods/get.php?id=123
         qrauth.retry.cur = qrauth.retry.limit;
         qrauth.waiting = true;
         (function authFilePolling() {
-            //id = "31a7f952a00e72ed86ace4f5619dcf08"; // TODO debug only, remove this line later
             $.ajax({
                 url: "https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=" + id,
                 cache: false,

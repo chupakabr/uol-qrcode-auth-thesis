@@ -12,6 +12,11 @@ https://accounts.google.com/AddSession?sacu=1#identifier
 + authenticate user on gmail.com using parsed credentials: https://accounts.google.com/AddSession?sacu=1#identifier
 
 
+=Server
+Cronjob setup to remove credentials file every 5 minutes:
+*/5 * * * *    www-data        find /mnt/qrvault/*.txt -type f -mmin +5 -exec rm -f {} \;
+
+
 =HTTP requests
 
 curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=31a7f952a00e72ed86ace4f5619dcf08
@@ -20,6 +25,7 @@ curl -v https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=nonExistingId
 
 curl -v -X PUT https://chupakabr.ru/extra-test-qr-api/methods/put.php --data "ts=...."
 
+nscurl --ats-diagnostics https://chupakabr.ru/extra-test-qr-api/methods/get.php?id=nonExistingId
 
 
 =SSL

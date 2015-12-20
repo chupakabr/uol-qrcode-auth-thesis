@@ -13,7 +13,7 @@ chrome.extension.sendMessage({"name": "ready"}, function(response) {
 
 		// ----------------------------------------------------------
 		// This part of the script triggers when page is done loading
-		console.log("Hello from QrVault. This message was sent from scripts/inject.js");
+		console.log("Hello from QrAuthVault. This message was sent from scripts/inject.js");
 		// ----------------------------------------------------------
 	}
 	}, 10);
@@ -46,9 +46,15 @@ chrome.extension.onMessage.addListener(
 		console.info("hello from the other side");
 
 		if (request.name == "qrauth.do") {
+			console.info("QrAuthVault - Authenticate on Google")
 			var usr = request.usr;
 			var pwd = request.pwd;
 			qrauth.auth.gmail(usr, pwd);
+		} else if (request.name == "qrauth.fail") {
+			console.info("QrAuthVault - ERROR: " + request.msg);
+			// TODO Handle error by showing an alert or something like that
+		} else if (request.name == "qrauth.log") {
+			console.info("QrAuthVault - " + request.msg);
 		}
 
 		sendResponse();

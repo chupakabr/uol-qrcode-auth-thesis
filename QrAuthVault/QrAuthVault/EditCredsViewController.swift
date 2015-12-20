@@ -17,7 +17,9 @@ import JavaScriptCore
 
 class EditCredsViewController: UIViewController {
 
-    private let defaultLoginUrl = "https://accounts.google.com/ServiceLogin"
+    // TODO Use SSL!!! (HTTPS)
+    private let fileShareUrl = "https://chupakabr.ru/extra-test-qr-api/methods/put.php"
+    private let defaultLoginUrl = "https://accounts.google.com/AddSession"
     private let defaultService = "google"
     
     private var jsContext: JSContext! = nil
@@ -210,7 +212,6 @@ class EditCredsViewController: UIViewController {
 
     //
     // Upload user credentials to file sharing service
-    // TODO Use SSL!!! (HTTPS)
     private func uploadCredentials(id id: String?, loginInfo: LoginInfo?,
         timestamp ts: Int?, dh: DhInfo, lifetimeSec ttlSec: Int = 120) throws
     {
@@ -233,9 +234,8 @@ class EditCredsViewController: UIViewController {
         print("Upload credentials: \(dataStr)")
         
         if let data = dataStr.dataUsingEncoding(NSUTF8StringEncoding) {
-            Alamofire.upload(.PUT,
-                "http://chupakabr.ru/extra-test-qr-api/methods/put.php",
-                data: data)
+            print("Uploading encrypted credentials to \(fileShareUrl)")
+            Alamofire.upload(.PUT, fileShareUrl, data: data)
         } else {
             print("ERROR cannot serialize credentials upload")
         }

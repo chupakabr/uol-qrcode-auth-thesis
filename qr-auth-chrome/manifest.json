@@ -25,6 +25,8 @@
     "tabs",
     "https://*/*",
     "http://*/*"
+    //"https://accounts.google.com/*",
+    //"https://accounts.google.com/AddSession*"
   ],
   "content_scripts": [
     {

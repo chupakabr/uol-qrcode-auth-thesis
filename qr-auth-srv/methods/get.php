@@ -29,8 +29,8 @@ if (@file_exists($filepath)) {
     @fclose($input);
     echo "\n";
 
-    // Delete the file
-    @unlink($filepath);
+    // TODO Delete the file, but maybe using cron job? with TTL of 2 minutes
+    //@unlink($filepath);
 
     http_response_code(200);
 } else {
