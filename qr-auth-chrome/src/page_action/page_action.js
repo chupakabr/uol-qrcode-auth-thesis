@@ -15,7 +15,7 @@ if (typeof qrauth === "undefined") {
 }
 qrauth.retry = {};
 qrauth.retry.cur = 0;
-qrauth.retry.limit = 5; // TODO increase
+qrauth.retry.limit = 10;
 qrauth.retry.millis = 3000;
 qrauth.waiting = false;
 
