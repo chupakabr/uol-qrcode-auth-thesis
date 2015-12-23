@@ -41,26 +41,19 @@ class ViewController: UIViewController {
     @IBAction func authenticate() {
         print("++ authenticate")
         
-        // 1.
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:nil) {
-            
-            // 2.
             context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics,
                 localizedReason: "Logging in with Touch ID",
                 reply: { (success : Bool, error : NSError? ) -> Void in
-                    
-                    // 3.
                     dispatch_async(dispatch_get_main_queue(), {
                         if success {
                             self.performSegueWithIdentifier("auth_done", sender: self)
                         }
                         
                         if error != nil {
-                            
                             var message : NSString
                             var showAlert : Bool
                             
-                            // 4.
                             switch(error!.code) {
                             case LAError.AuthenticationFailed.rawValue:
                                 message = "There was a problem verifying your identity."
@@ -92,13 +85,11 @@ class ViewController: UIViewController {
                     })
             })
         } else {
-            // 5.
             let alertView = UIAlertController(title: "Error", message: "Touch ID not available" as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "Darn!", style: .Default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
         }
-        
     }
 }
 
