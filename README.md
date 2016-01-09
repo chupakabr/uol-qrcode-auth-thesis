@@ -1,7 +1,7 @@
 # uol-qrcode-auth-thesis
 UoL Thesis: QR codes for authentication
 
-Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authentication - final.pdf) was submitted on 2015 December 27.
+Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authentication - final.pdf) was submitted on 2015 December 27 [not available at the moment - PDf file will be available in May-June 2016 after a grade is given by UoL].
 
 ###Components
 
@@ -11,6 +11,6 @@ Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authe
 
 ###Links
 
-[Dissertation final document (PDF)](Valera Chevtaev - Thesis - QR Authentication - final.pdf)
+[Dissertation final document (PDF)](Valera Chevtaev - Thesis - QR Authentication - final.pdf) [not available at the moment]
 
 IT artefacts download page: [http://chupakabr.ru/extra-test-qr-api/download/](http://chupakabr.ru/extra-test-qr-api/download/), also available via secure connection (HTTPS) on [https://chupakabr.ru/extra-test-qr-api/download/](https://chupakabr.ru/extra-test-qr-api/download/)
