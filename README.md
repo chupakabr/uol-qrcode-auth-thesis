@@ -11,6 +11,6 @@ Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authe
 
 ###Links
 
-[Dissertation final document (PDF)](Valera Chevtaev - Thesis - QR Authentication - final.pdf) [not available at the moment]
+[Dissertation final document (PDF)](Valera Chevtaev - Thesis - QR Authentication - final.pdf)
 
 IT artefacts download page: [http://chupakabr.ru/extra-test-qr-api/download/](http://chupakabr.ru/extra-test-qr-api/download/), also available via secure connection (HTTPS) on [https://chupakabr.ru/extra-test-qr-api/download/](https://chupakabr.ru/extra-test-qr-api/download/)
