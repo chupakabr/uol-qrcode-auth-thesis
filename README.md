@@ -1,7 +1,7 @@
 # uol-qrcode-auth-thesis
 UoL Thesis: QR codes for authentication
 
-Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authentication - final.pdf) was submitted on 2015 December 27 [not available at the moment - PDf file will be available in May-June 2016 after a grade is given by UoL].
+Final version of [dissertation document PDF](Valera Chevtaev - Thesis - QR Authentication - final.pdf) was commited into GIT on 30th of June 2016 after the grade has been provided by the University of Liverpool.
 
 ###Components
 
